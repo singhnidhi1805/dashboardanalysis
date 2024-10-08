@@ -1,0 +1,18 @@
+<div class="logout-container">
+  <button (click)="logout()" class="logout-button">Logout</button>
+</div>
+
+<div *ngIf="!isLoading && !error" class="chart-grid">
+  <div class="chart-container" *ngFor="let chart of chartsData">
+    <h2>{{ chart.title }}</h2>
+    <ng-container *ngIf="chart.type === 'pie'">
+        <app-pie-chart [data]="chart.data" (drillDown)="onCategoryDrillDown($event)"></app-pie-chart>
+    </ng-container>
+    <ng-container *ngIf="chart.type === 'line'">
+      <app-line-chart [data]="chart.data"></app-line-chart>
+    </ng-container>
+    <ng-container *ngIf="chart.type === 'bar'">
+      <app-bar-chart [data]="chart.data"></app-bar-chart>
+    </ng-container>
+  </div>
+</div>
